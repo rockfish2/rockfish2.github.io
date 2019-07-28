@@ -145,8 +145,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="数据结构：二叉树"><a href="#数据结构：二叉树" class="headerlink" title="数据结构：二叉树"></a>数据结构：二叉树</h2><p>测试了一下图片</p>
-<p><img src=".%5Cimg%5C20190728img%5Cxmao.jpg" alt></p>
+        <h2 id="数据结构：二叉树"><a href="#数据结构：二叉树" class="headerlink" title="数据结构：二叉树"></a>数据结构：二叉树</h2><p>测试了一下图片assets/time.jpg</p>
+<p><img src="https://github.com/rockfish2/rockfish2.github.io/blob/master/img/20190728img/xmao.jpg" alt></p>
 <blockquote>
 <p>先来一题比较难的：</p>
 <p>二叉搜索树与双向链表：</p>
@@ -154,7 +154,7 @@
 <p><strong>分析：</strong></p>
 <p>要注意二叉树里面是有数据联系的，只允许修改node的指针：</p>
 </blockquote>
-<p><img src=".%5Cimg%5C20190728img%5CBTree_to_dList.jpg" alt="BTree_to_dList"></p>
+<p><img src="https://github.com/rockfish2/rockfish2.github.io/blob/master/img/20190728img/BTree_to_dList.jpg" alt="BTree_to_dList"></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//向左遍历</span></span><br><span class="line">TreeNode* left = Convert(pRootOfTree-&gt;left);</span><br><span class="line"></span><br><span class="line">TreeNode* run_node = left;</span><br><span class="line"><span class="comment">//保存最左边的节点</span></span><br><span class="line"><span class="keyword">while</span> (run_node &amp;&amp; run_node-&gt;right)</span><br><span class="line">&#123;</span><br><span class="line">	run_node = run_node-&gt;right;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (left)</span><br><span class="line">&#123;</span><br><span class="line">	run_node-&gt;right = pRootOfTree;</span><br><span class="line">	pRootOfTree-&gt;left = run_node;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>再看右子树的处理</p>
@@ -163,7 +163,7 @@
 <p>再看最后的返回处理：返回头节点</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//向左遍历</span></span><br><span class="line">TreeNode* left = Convert(pRootOfTree-&gt;left);		</span><br><span class="line">.....</span><br><span class="line"><span class="keyword">return</span> left != <span class="literal">NULL</span> ? left : pRootOfTree;</span><br></pre></td></tr></table></figure>
 
-<p><img src=".%5Cimg%5C20190728img%5Csad.jpg" alt="sad"></p>
+<p><img src="https://github.com/rockfish2/rockfish2.github.io/blob/master/img/20190728img/sad.jpg" alt="sad"></p>
 
       
 
