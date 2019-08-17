@@ -140,6 +140,78 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-20190817-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/17/20190817-md/">中序遍历和层次遍历</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/17/20190817-md/" class="archive-article-date">
+  	<time datetime="2019-08-17T14:35:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="中序遍历和层次遍历"><a href="#中序遍历和层次遍历" class="headerlink" title="中序遍历和层次遍历"></a>中序遍历和层次遍历</h1><blockquote>
+<p>输入中序遍历和层次遍历</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">TreeNode* <span class="title">createTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;inorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;seq, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (seq.size() &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">	TreeNode *root = <span class="keyword">new</span> TreeNode(seq[<span class="number">0</span>]);</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;left;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;right;</span><br><span class="line">	<span class="keyword">int</span> k;</span><br><span class="line">	<span class="keyword">for</span> (k = begin; k &lt;= end; ++k)</span><br><span class="line">		<span class="keyword">if</span> (inorder[k] == seq[<span class="number">0</span>])</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">bool</span> isleft;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; seq.size(); ++i)<span class="comment">//层次遍历</span></span><br><span class="line">	&#123;</span><br><span class="line">		isleft = <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = begin; j &lt; k; ++j)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (seq[i] == inorder[j])</span><br><span class="line">			&#123;</span><br><span class="line">				isleft = <span class="literal">true</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (isleft)</span><br><span class="line">			left.push_back(seq[i]);</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			right.push_back(seq[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	root-&gt;left = createTree(inorder, left, begin, k - <span class="number">1</span>);<span class="comment">//</span></span><br><span class="line">	root-&gt;right = createTree(inorder, right, k + <span class="number">1</span>, end);</span><br><span class="line">	<span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>和中序遍历个和前序遍历相区别：</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">TreeNode* <span class="title">build_tree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;pre, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;vin,<span class="keyword">int</span> start_pre ,<span class="keyword">int</span> end_pre, <span class="keyword">int</span> start_in, <span class="keyword">int</span> end_in )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//int root_value = pre[0];//new root</span></span><br><span class="line">    TreeNode* root = <span class="keyword">new</span> TreeNode(pre[start_pre]);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> (start_pre == end_pre )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (start_in == end_in &amp;&amp; pre[start_pre] == vin[start_in])</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line"> </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//中序遍历找到root</span></span><br><span class="line">    <span class="keyword">int</span> root_inorder = pre[start_pre];</span><br><span class="line">    <span class="keyword">int</span> index_in = start_in;</span><br><span class="line">    <span class="keyword">while</span> (index_in &lt;= end_in)</span><br><span class="line">    &#123;</span><br><span class="line">         </span><br><span class="line">        <span class="keyword">if</span> (vin[index_in] == root_inorder)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        index_in++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> length = index_in - start_in;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">int</span> left_pre_end = start_pre + length;</span><br><span class="line">    <span class="comment">//构建左子树</span></span><br><span class="line">    <span class="keyword">if</span> (length&gt;<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        root-&gt;left = build_tree(pre, vin, start_pre + <span class="number">1</span>, left_pre_end, start_in, index_in - <span class="number">1</span>);</span><br><span class="line"> </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//构建右子树</span></span><br><span class="line">    <span class="keyword">if</span> (length &lt; end_pre - start_pre)</span><br><span class="line">    &#123;</span><br><span class="line">        root-&gt;right = build_tree(pre, vin, left_pre_end+<span class="number">1</span>, end_pre, index_in+<span class="number">1</span>, end_in);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/17/20190817-md/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-midNumber" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
