@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>20180817 | Hello，I&#39;m sen</title>
+  <title>中序遍历和层次遍历 | Hello，I&#39;m sen</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="中序遍历和层次遍历 输入中序遍历和层次遍历  12345678910111213141516171819202122232425262728293031323334TreeNode* createTree(vector&amp;lt;int&amp;gt;inorder, vector&amp;lt;int&amp;gt;seq, int begin, int end)&amp;#123;	if (seq.size() &amp;lt;= 0)">
+  <meta name="description" content="输入中序遍历和层次遍历  12345678910111213141516171819202122232425262728293031323334TreeNode* createTree(vector&amp;lt;int&amp;gt;inorder, vector&amp;lt;int&amp;gt;seq, int begin, int end)&amp;#123;	if (seq.size() &amp;lt;= 0) return n">
+<meta name="keywords" content="遍历">
 <meta property="og:type" content="article">
-<meta property="og:title" content="20180817">
+<meta property="og:title" content="中序遍历和层次遍历">
 <meta property="og:url" content="http://yoursite.com/2019/08/17/20190817-md/index.html">
 <meta property="og:site_name" content="Hello，I&#39;m sen">
-<meta property="og:description" content="中序遍历和层次遍历 输入中序遍历和层次遍历  12345678910111213141516171819202122232425262728293031323334TreeNode* createTree(vector&amp;lt;int&amp;gt;inorder, vector&amp;lt;int&amp;gt;seq, int begin, int end)&amp;#123;	if (seq.size() &amp;lt;= 0)">
+<meta property="og:description" content="输入中序遍历和层次遍历  12345678910111213141516171819202122232425262728293031323334TreeNode* createTree(vector&amp;lt;int&amp;gt;inorder, vector&amp;lt;int&amp;gt;seq, int begin, int end)&amp;#123;	if (seq.size() &amp;lt;= 0) return n">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-20T06:53:11.492Z">
+<meta property="og:updated_time" content="2019-08-20T07:26:26.720Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="20180817">
-<meta name="twitter:description" content="中序遍历和层次遍历 输入中序遍历和层次遍历  12345678910111213141516171819202122232425262728293031323334TreeNode* createTree(vector&amp;lt;int&amp;gt;inorder, vector&amp;lt;int&amp;gt;seq, int begin, int end)&amp;#123;	if (seq.size() &amp;lt;= 0)">
+<meta name="twitter:title" content="中序遍历和层次遍历">
+<meta name="twitter:description" content="输入中序遍历和层次遍历  12345678910111213141516171819202122232425262728293031323334TreeNode* createTree(vector&amp;lt;int&amp;gt;inorder, vector&amp;lt;int&amp;gt;seq, int begin, int end)&amp;#123;	if (seq.size() &amp;lt;= 0) return n">
   
     <link rel="alternative" href="/atom.xml" title="Hello，I&#39;m sen" type="application/atom+xml">
   
@@ -65,10 +66,6 @@
     		
     			
     			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
-    			
-            
-    			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
     			
             
     			
@@ -155,7 +152,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      20180817
+      中序遍历和层次遍历
     </h1>
   
 
@@ -168,7 +165,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="中序遍历和层次遍历"><a href="#中序遍历和层次遍历" class="headerlink" title="中序遍历和层次遍历"></a>中序遍历和层次遍历</h1><blockquote>
+        <blockquote>
 <p>输入中序遍历和层次遍历</p>
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">TreeNode* <span class="title">createTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;inorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;seq, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (seq.size() &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">	TreeNode *root = <span class="keyword">new</span> TreeNode(seq[<span class="number">0</span>]);</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;left;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;right;</span><br><span class="line">	<span class="keyword">int</span> k;</span><br><span class="line">	<span class="keyword">for</span> (k = begin; k &lt;= end; ++k)</span><br><span class="line">		<span class="keyword">if</span> (inorder[k] == seq[<span class="number">0</span>])</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">bool</span> isleft;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; seq.size(); ++i)<span class="comment">//层次遍历</span></span><br><span class="line">	&#123;</span><br><span class="line">		isleft = <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = begin; j &lt; k; ++j)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (seq[i] == inorder[j])</span><br><span class="line">			&#123;</span><br><span class="line">				isleft = <span class="literal">true</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (isleft)</span><br><span class="line">			left.push_back(seq[i]);</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			right.push_back(seq[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	root-&gt;left = createTree(inorder, left, begin, k - <span class="number">1</span>);<span class="comment">//</span></span><br><span class="line">	root-&gt;right = createTree(inorder, right, k + <span class="number">1</span>, end);</span><br><span class="line">	<span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -213,6 +210,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">遍历</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -281,7 +289,7 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          20190818
+          二叉树非递归方法
         
       </div>
     </a>
@@ -315,7 +323,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#中序遍历和层次遍历"><span class="toc-number">1.</span> <span class="toc-text">中序遍历和层次遍历</span></a></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
@@ -388,25 +396,17 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
       
     
-      
-      
-      
-    
     
 
     <ul style="width: 70%">
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
-        
-      
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -432,6 +432,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">非递归</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">遍历</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">二叉搜索树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">双链表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">大小堆</a>
               </li>
             
             <div class="clearfix"></div>
@@ -477,18 +497,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     	</section>
     
 
-    
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="https://github.com/rockfish2" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
     
 
     

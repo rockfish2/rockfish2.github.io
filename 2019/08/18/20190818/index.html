@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>20190818 | Hello，I&#39;m sen</title>
+  <title>二叉树非递归方法 | Hello，I&#39;m sen</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="二叉树非递归方法： /*感谢博主，提供的思路 https://blog.csdn.net/z_ryan/article/details/80854233 */  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &amp;lt;iostream&amp;gt;#include">
+  <meta name="description" content="/*感谢博主，提供的思路 https://blog.csdn.net/z_ryan/article/details/80854233 */  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &amp;lt;iostream&amp;gt;#include &amp;lt;stack">
 <meta name="keywords" content="二叉树,非递归">
 <meta property="og:type" content="article">
-<meta property="og:title" content="20190818">
+<meta property="og:title" content="二叉树非递归方法">
 <meta property="og:url" content="http://yoursite.com/2019/08/18/20190818/index.html">
 <meta property="og:site_name" content="Hello，I&#39;m sen">
-<meta property="og:description" content="二叉树非递归方法： /*感谢博主，提供的思路 https://blog.csdn.net/z_ryan/article/details/80854233 */  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &amp;lt;iostream&amp;gt;#include">
+<meta property="og:description" content="/*感谢博主，提供的思路 https://blog.csdn.net/z_ryan/article/details/80854233 */  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &amp;lt;iostream&amp;gt;#include &amp;lt;stack">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-20T07:14:10.508Z">
+<meta property="og:updated_time" content="2019-08-20T07:21:21.447Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="20190818">
-<meta name="twitter:description" content="二叉树非递归方法： /*感谢博主，提供的思路 https://blog.csdn.net/z_ryan/article/details/80854233 */  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &amp;lt;iostream&amp;gt;#include">
+<meta name="twitter:title" content="二叉树非递归方法">
+<meta name="twitter:description" content="/*感谢博主，提供的思路 https://blog.csdn.net/z_ryan/article/details/80854233 */  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &amp;lt;iostream&amp;gt;#include &amp;lt;stack">
   
     <link rel="alternative" href="/atom.xml" title="Hello，I&#39;m sen" type="application/atom+xml">
   
@@ -66,10 +66,6 @@
     		
     			
     			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
-    			
-            
-    			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
     			
             
     			
@@ -156,7 +152,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      20190818
+      二叉树非递归方法
     </h1>
   
 
@@ -169,7 +165,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="二叉树非递归方法："><a href="#二叉树非递归方法：" class="headerlink" title="二叉树非递归方法："></a>二叉树非递归方法：</h1><blockquote>
+        <blockquote>
 <p>/*感谢博主，提供的思路 <a href="https://blog.csdn.net/z_ryan/article/details/80854233" target="_blank" rel="noopener">https://blog.csdn.net/z_ryan/article/details/80854233</a> */</p>
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> ::<span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*感谢博主，提供的思路 https://blog.csdn.net/z_ryan/article/details/80854233 */</span></span><br><span class="line"><span class="comment">//Binary Tree Node</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> data;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">node</span>* <span class="title">lchild</span>;</span>  <span class="comment">//左孩子</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">node</span>* <span class="title">rchild</span>;</span>  <span class="comment">//右孩子</span></span><br><span class="line">	node(<span class="keyword">int</span> x) :data(x), lchild(<span class="literal">NULL</span>), rchild(<span class="literal">NULL</span>) &#123;&#125;;</span><br><span class="line">&#125;BTNode;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		<span class="comment">//中序遍历</span></span><br><span class="line"><span class="comment">//思路：所有的root 看作是左节点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InOrderWithoutRecursion1</span><span class="params">(BTNode* root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//空树</span></span><br><span class="line">	<span class="keyword">if</span> (root == <span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="comment">//树非空</span></span><br><span class="line">	BTNode* p = root;</span><br><span class="line">	<span class="built_in">stack</span>&lt;BTNode*&gt; s;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (!s.empty() || p)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//一直遍历到左子树最下边，边遍历边保存根节点到栈中</span></span><br><span class="line">		<span class="keyword">while</span> (p)</span><br><span class="line">		&#123;</span><br><span class="line">			s.push(p);</span><br><span class="line">			p = p-&gt;lchild;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//当p为空时，说明已经到达左子树最下边，这时需要出栈了</span></span><br><span class="line">		<span class="keyword">if</span> (!s.empty())</span><br><span class="line">		&#123;</span><br><span class="line">			p = s.top();</span><br><span class="line">			s.pop();</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; p-&gt;data;</span><br><span class="line">			<span class="comment">//进入右子树，开始新的一轮左子树遍历(这是递归的自我实现)</span></span><br><span class="line">			p = p-&gt;rchild;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -292,7 +288,7 @@
   
   
     <a href="/2019/08/17/20190817-md/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">20180817</div>
+      <div class="article-nav-title">中序遍历和层次遍历</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -319,7 +315,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#二叉树非递归方法："><span class="toc-number">1.</span> <span class="toc-text">二叉树非递归方法：</span></a></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
@@ -392,25 +388,17 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
       
     
-      
-      
-      
-    
     
 
     <ul style="width: 70%">
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
-        
-      
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -436,6 +424,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">非递归</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">遍历</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">二叉搜索树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">双链表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">大小堆</a>
               </li>
             
             <div class="clearfix"></div>
@@ -481,18 +489,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     	</section>
     
 
-    
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="https://github.com/rockfish2" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
     
 
     

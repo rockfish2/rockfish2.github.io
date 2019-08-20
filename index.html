@@ -64,10 +64,6 @@
     			
             
     			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
-    			
-            
-    			
     			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
     			
             
@@ -153,7 +149,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/18/20190818/">20190818</a>
+      <a class="article-title" href="/2019/08/18/20190818/">二叉树非递归方法</a>
     </h1>
   
 
@@ -166,7 +162,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="二叉树非递归方法："><a href="#二叉树非递归方法：" class="headerlink" title="二叉树非递归方法："></a>二叉树非递归方法：</h1><blockquote>
+        <blockquote>
 <p>/*感谢博主，提供的思路 <a href="https://blog.csdn.net/z_ryan/article/details/80854233" target="_blank" rel="noopener">https://blog.csdn.net/z_ryan/article/details/80854233</a> */</p>
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> ::<span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*感谢博主，提供的思路 https://blog.csdn.net/z_ryan/article/details/80854233 */</span></span><br><span class="line"><span class="comment">//Binary Tree Node</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> data;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">node</span>* <span class="title">lchild</span>;</span>  <span class="comment">//左孩子</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">node</span>* <span class="title">rchild</span>;</span>  <span class="comment">//右孩子</span></span><br><span class="line">	node(<span class="keyword">int</span> x) :data(x), lchild(<span class="literal">NULL</span>), rchild(<span class="literal">NULL</span>) &#123;&#125;;</span><br><span class="line">&#125;BTNode;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		<span class="comment">//中序遍历</span></span><br><span class="line"><span class="comment">//思路：所有的root 看作是左节点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InOrderWithoutRecursion1</span><span class="params">(BTNode* root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//空树</span></span><br><span class="line">	<span class="keyword">if</span> (root == <span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="comment">//树非空</span></span><br><span class="line">	BTNode* p = root;</span><br><span class="line">	<span class="built_in">stack</span>&lt;BTNode*&gt; s;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (!s.empty() || p)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//一直遍历到左子树最下边，边遍历边保存根节点到栈中</span></span><br><span class="line">		<span class="keyword">while</span> (p)</span><br><span class="line">		&#123;</span><br><span class="line">			s.push(p);</span><br><span class="line">			p = p-&gt;lchild;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//当p为空时，说明已经到达左子树最下边，这时需要出栈了</span></span><br><span class="line">		<span class="keyword">if</span> (!s.empty())</span><br><span class="line">		&#123;</span><br><span class="line">			p = s.top();</span><br><span class="line">			s.pop();</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; p-&gt;data;</span><br><span class="line">			<span class="comment">//进入右子树，开始新的一轮左子树遍历(这是递归的自我实现)</span></span><br><span class="line">			p = p-&gt;rchild;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -236,7 +232,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/17/20190817-md/">20180817</a>
+      <a class="article-title" href="/2019/08/17/20190817-md/">中序遍历和层次遍历</a>
     </h1>
   
 
@@ -249,7 +245,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="中序遍历和层次遍历"><a href="#中序遍历和层次遍历" class="headerlink" title="中序遍历和层次遍历"></a>中序遍历和层次遍历</h1><blockquote>
+        <blockquote>
 <p>输入中序遍历和层次遍历</p>
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">TreeNode* <span class="title">createTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;inorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;seq, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (seq.size() &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">	TreeNode *root = <span class="keyword">new</span> TreeNode(seq[<span class="number">0</span>]);</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;left;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;right;</span><br><span class="line">	<span class="keyword">int</span> k;</span><br><span class="line">	<span class="keyword">for</span> (k = begin; k &lt;= end; ++k)</span><br><span class="line">		<span class="keyword">if</span> (inorder[k] == seq[<span class="number">0</span>])</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">bool</span> isleft;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; seq.size(); ++i)<span class="comment">//层次遍历</span></span><br><span class="line">	&#123;</span><br><span class="line">		isleft = <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = begin; j &lt; k; ++j)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (seq[i] == inorder[j])</span><br><span class="line">			&#123;</span><br><span class="line">				isleft = <span class="literal">true</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (isleft)</span><br><span class="line">			left.push_back(seq[i]);</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			right.push_back(seq[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	root-&gt;left = createTree(inorder, left, begin, k - <span class="number">1</span>);<span class="comment">//</span></span><br><span class="line">	root-&gt;right = createTree(inorder, right, k + <span class="number">1</span>, end);</span><br><span class="line">	<span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -263,6 +259,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">遍历</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -317,7 +324,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。我们使用Insert()方法读取数据流，使用GetMedian()方法获取当前读取数据的中位数。</p>
+        <blockquote>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3></blockquote>
+<p>如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。我们使用Insert()方法读取数据流，使用GetMedian()方法获取当前读取数据的中位数。</p>
 <p><img src="https://raw.githubusercontent.com/rockfish2/rockfish2.github.io/master/img/20190728img/xmao.jpg" alt></p>
         
           <a class="article-more-a" href="/2019/08/08/midNumber/#more">more >></a>
@@ -329,6 +338,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">大小堆</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -399,6 +419,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">遍历</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">二叉搜索树</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -436,9 +471,24 @@
     <article id="post-20190728" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/28/20190728/">二叉树转双链表</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/28/20190728/" class="archive-article-date">
+  	<time datetime="2019-07-28T11:16:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-28</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="数据结构：二叉树"><a href="#数据结构：二叉树" class="headerlink" title="数据结构：二叉树"></a>数据结构：二叉树</h2><p>测试了一下图片assets/time.jpg</p>
+        <p>测试了一下图片assets/time.jpg</p>
 <p><img src="https://raw.githubusercontent.com/rockfish2/rockfish2.github.io/master/img/20190728img/xmao.jpg" alt="image"></p>
 <blockquote>
 <p>先来一题比较难的：</p>
@@ -458,6 +508,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">二叉树</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">双链表</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -499,7 +564,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/27/first-blog/">first blog</a>
+      <a class="article-title" href="/2019/07/27/first-blog/">基础复习</a>
     </h1>
   
 
@@ -512,7 +577,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="20190311"><a href="#20190311" class="headerlink" title="20190311"></a>20190311</h2><p>1.c语言的复习：|的用法。或运算</p>
+        <p>1.c语言的复习：|的用法。或运算</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/**Initializes the CPU, AHB and APB busses clocks</span><br><span class="line">*/</span><br><span class="line">RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSI | RCC_OSCILLATORTYPE_HSE;</span><br></pre></td></tr></table></figure>
         
           <a class="article-more-a" href="/2019/07/27/first-blog/#more">more >></a>
@@ -524,6 +589,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C语言</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -565,20 +641,20 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/27/hello-world/">BTree</a>
+      <a class="article-title" href="/2019/07/26/hello-world/">二叉树的镜像</a>
     </h1>
   
 
         
-        <a href="/2019/07/27/hello-world/" class="archive-article-date">
-  	<time datetime="2019-07-27T11:08:40.147Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-27</time>
+        <a href="/2019/07/26/hello-world/" class="archive-article-date">
+  	<time datetime="2019-07-26T11:16:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="刷题"><a href="#刷题" class="headerlink" title="刷题"></a>刷题</h2><h3 id="二叉树的镜像"><a href="#二叉树的镜像" class="headerlink" title="二叉树的镜像"></a>二叉树的镜像</h3><hr>
+        <hr>
 <blockquote>
 <p>操作给定的二叉树，将其变换为源二叉树的镜像。</p>
 </blockquote>
@@ -597,7 +673,7 @@
 <p>此时可以用递归来解决此类问题</p>
 </blockquote>
         
-          <a class="article-more-a" href="/2019/07/27/hello-world/#more">more >></a>
+          <a class="article-more-a" href="/2019/07/26/hello-world/#more">more >></a>
         
       
 
@@ -606,11 +682,22 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">二叉树</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/27/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/07/26/hello-world/">展开全文 >></a>
         </p>
       
 
@@ -694,25 +781,17 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
       
     
-      
-      
-      
-    
     
 
     <ul style="width: 70%">
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
-        
-      
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -738,6 +817,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">非递归</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">遍历</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">二叉搜索树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">双链表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">大小堆</a>
               </li>
             
             <div class="clearfix"></div>
@@ -783,18 +882,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     	</section>
     
 
-    
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="https://github.com/rockfish2" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
     
 
     
