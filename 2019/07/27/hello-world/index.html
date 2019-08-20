@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hello，I&#39;m sen">
 <meta property="og:description" content="刷题二叉树的镜像  操作给定的二叉树，将其变换为源二叉树的镜像。    二叉树的镜像定义：  123456789101112二叉树的镜像定义：源二叉树     	    8    	   /  \    	  6   10    	 / \  / \    	5  7 9 11    	镜像二叉树    	    8    	   /  \    	  10   6    	 / \  / \">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-27T13:02:52.545Z">
+<meta property="og:updated_time" content="2019-08-20T06:54:28.675Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BTree">
 <meta name="twitter:description" content="刷题二叉树的镜像  操作给定的二叉树，将其变换为源二叉树的镜像。    二叉树的镜像定义：  123456789101112二叉树的镜像定义：源二叉树     	    8    	   /  \    	  6   10    	 / \  / \    	5  7 9 11    	镜像二叉树    	    8    	   /  \    	  10   6    	 / \  / \">
@@ -57,16 +57,12 @@
 		<nav class="header-menu">
 			<ul>
 			
-				<li><a href="/">菜鸟</a></li>
-	        
 				<li><a href="/">随笔</a></li>
 	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
     		
-    			
-    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
     			
             
     			
@@ -115,8 +111,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -137,9 +131,7 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 50%"><a href="/">菜鸟</a></li>
-		        
-					<li style="width: 50%"><a href="/">随笔</a></li>
+					<li style="width: 100%"><a href="/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -192,6 +184,7 @@
 <blockquote>
 <p>此时可以用递归来解决此类问题</p>
 </blockquote>
+ <a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">void Mirror(TreeNode *pRoot) &#123;</span><br><span class="line">	if (pRoot != NULL)</span><br><span class="line">	&#123;</span><br><span class="line">		Change_child_pointer(pRoot);</span><br><span class="line">		Mirror(pRoot-&gt;left);</span><br><span class="line">		Mirror(pRoot-&gt;right);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -361,7 +354,7 @@
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
-		innerArchive: true,
+		innerArchive: false,
 		showTags: false
 	}
 </script>
@@ -378,8 +371,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     
       
-      
-      
     
       
       
@@ -395,75 +386,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+        
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
-        
-      
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
   </div>
   <div class="tools-wrap">
-    
-    	<section class="tools-section tools-section-all" q-show="innerArchive">
-        <div class="search-wrap">
-          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
-          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
-          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
-        </div>
-        <div class="widget tagcloud search-tag">
-          <p class="search-tag-wording">tag:</p>
-          <label class="search-switch">
-            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
-          </label>
-          <ul class="article-tag-list" q-show="showTags">
-            
-            <div class="clearfix"></div>
-          </ul>
-        </div>
-        <ul class="search-ul">
-          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
-            3、在根目录_config.yml里添加配置：
-<pre style="font-size: 12px;" q-show="jsonFail">
-  jsonContent:
-    meta: false
-    pages: false
-    posts:
-      title: true
-      date: true
-      path: true
-      text: false
-      raw: false
-      content: false
-      slug: false
-      updated: false
-      comments: false
-      link: false
-      permalink: false
-      excerpt: false
-      categories: false
-      tags: true
-</pre>
-          </p>
-          <li class="search-li" q-repeat="items" q-show="isShow">
-            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
-            <p class="search-time">
-              <i class="icon-calendar icon"></i>
-              <span q-text="date|dateformat"></span>
-            </p>
-            <p class="search-tag">
-              <i class="icon-price-tags icon"></i>
-              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
-            </p>
-          </li>
-        </ul>
-    	</section>
     
 
     
