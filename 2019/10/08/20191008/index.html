@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>中序遍历和层次遍历 | Hello，I&#39;m sen</title>
+  <title>n的阶乘 | Hello，I&#39;m sen</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="输入中序遍历和层次遍历  12345678910111213141516171819202122232425262728293031323334TreeNode* createTree(vector&amp;lt;int&amp;gt;inorder, vector&amp;lt;int&amp;gt;seq, int begin, int end)&amp;#123;	if (seq.size() &amp;lt;= 0) return n">
-<meta name="keywords" content="遍历">
+  <meta name="description" content="求任一正整数的阶乘（注意：是任意正整数）该正整数不大于1000。 思路：数据会溢出，所以使用数组保存数据">
+<meta name="keywords" content="大数保存">
 <meta property="og:type" content="article">
-<meta property="og:title" content="中序遍历和层次遍历">
-<meta property="og:url" content="http://yoursite.com/2019/08/17/20190817-md/index.html">
+<meta property="og:title" content="n的阶乘">
+<meta property="og:url" content="http://yoursite.com/2019/10/08/20191008/index.html">
 <meta property="og:site_name" content="Hello，I&#39;m sen">
-<meta property="og:description" content="输入中序遍历和层次遍历  12345678910111213141516171819202122232425262728293031323334TreeNode* createTree(vector&amp;lt;int&amp;gt;inorder, vector&amp;lt;int&amp;gt;seq, int begin, int end)&amp;#123;	if (seq.size() &amp;lt;= 0) return n">
+<meta property="og:description" content="求任一正整数的阶乘（注意：是任意正整数）该正整数不大于1000。 思路：数据会溢出，所以使用数组保存数据">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-20T07:26:26.720Z">
+<meta property="og:updated_time" content="2019-10-08T09:15:06.382Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="中序遍历和层次遍历">
-<meta name="twitter:description" content="输入中序遍历和层次遍历  12345678910111213141516171819202122232425262728293031323334TreeNode* createTree(vector&amp;lt;int&amp;gt;inorder, vector&amp;lt;int&amp;gt;seq, int begin, int end)&amp;#123;	if (seq.size() &amp;lt;= 0) return n">
+<meta name="twitter:title" content="n的阶乘">
+<meta name="twitter:description" content="求任一正整数的阶乘（注意：是任意正整数）该正整数不大于1000。 思路：数据会溢出，所以使用数组保存数据">
   
     <link rel="alternative" href="/atom.xml" title="Hello，I&#39;m sen" type="application/atom+xml">
   
@@ -151,20 +151,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-20190817-md" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-20191008" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      中序遍历和层次遍历
+      n的阶乘
     </h1>
   
 
         
-        <a href="/2019/08/17/20190817-md/" class="archive-article-date">
-  	<time datetime="2019-08-17T14:35:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-17</time>
+        <a href="/2019/10/08/20191008/" class="archive-article-date">
+  	<time datetime="2019-10-08T09:11:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-08</time>
 </a>
         
       </header>
@@ -172,15 +172,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>输入中序遍历和层次遍历</p>
+<p>求任一正整数的阶乘（注意：是任意正整数）<br>该正整数不大于1000。</p>
+<p>思路：数据会溢出，所以使用数组保存数据</p>
 </blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">TreeNode* <span class="title">createTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;inorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;seq, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (seq.size() &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">	TreeNode *root = <span class="keyword">new</span> TreeNode(seq[<span class="number">0</span>]);</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;left;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;right;</span><br><span class="line">	<span class="keyword">int</span> k;</span><br><span class="line">	<span class="keyword">for</span> (k = begin; k &lt;= end; ++k)</span><br><span class="line">		<span class="keyword">if</span> (inorder[k] == seq[<span class="number">0</span>])</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">bool</span> isleft;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; seq.size(); ++i)<span class="comment">//层次遍历</span></span><br><span class="line">	&#123;</span><br><span class="line">		isleft = <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = begin; j &lt; k; ++j)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (seq[i] == inorder[j])</span><br><span class="line">			&#123;</span><br><span class="line">				isleft = <span class="literal">true</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (isleft)</span><br><span class="line">			left.push_back(seq[i]);</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			right.push_back(seq[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	root-&gt;left = createTree(inorder, left, begin, k - <span class="number">1</span>);<span class="comment">//</span></span><br><span class="line">	root-&gt;right = createTree(inorder, right, k + <span class="number">1</span>, end);</span><br><span class="line">	<span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 
- <a id="more"></a>
-<blockquote>
-<p>和中序遍历个和前序遍历相区别：</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">TreeNode* <span class="title">build_tree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;pre, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;vin,<span class="keyword">int</span> start_pre ,<span class="keyword">int</span> end_pre, <span class="keyword">int</span> start_in, <span class="keyword">int</span> end_in )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//int root_value = pre[0];//new root</span></span><br><span class="line">    TreeNode* root = <span class="keyword">new</span> TreeNode(pre[start_pre]);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> (start_pre == end_pre )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (start_in == end_in &amp;&amp; pre[start_pre] == vin[start_in])</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line"> </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//中序遍历找到root</span></span><br><span class="line">    <span class="keyword">int</span> root_inorder = pre[start_pre];</span><br><span class="line">    <span class="keyword">int</span> index_in = start_in;</span><br><span class="line">    <span class="keyword">while</span> (index_in &lt;= end_in)</span><br><span class="line">    &#123;</span><br><span class="line">         </span><br><span class="line">        <span class="keyword">if</span> (vin[index_in] == root_inorder)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        index_in++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> length = index_in - start_in;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">int</span> left_pre_end = start_pre + length;</span><br><span class="line">    <span class="comment">//构建左子树</span></span><br><span class="line">    <span class="keyword">if</span> (length&gt;<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        root-&gt;left = build_tree(pre, vin, start_pre + <span class="number">1</span>, left_pre_end, start_in, index_in - <span class="number">1</span>);</span><br><span class="line"> </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//构建右子树</span></span><br><span class="line">    <span class="keyword">if</span> (length &lt; end_pre - start_pre)</span><br><span class="line">    &#123;</span><br><span class="line">        root-&gt;right = build_tree(pre, vin, left_pre_end+<span class="number">1</span>, end_pre, index_in+<span class="number">1</span>, end_in);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//感谢前面老哥的思路</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> size_l  4000<span class="comment">//1000</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> a[size_l]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    a[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> t=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> c=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=t;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> r=(a[j]*i+c)/<span class="number">10</span>;</span><br><span class="line">            a[j]=(a[j]*i+c)%<span class="number">10</span>;</span><br><span class="line">            c=r;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(c !=<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            a[++t]= c%<span class="number">10</span>;</span><br><span class="line">            c=c/<span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=t;i&gt;=<span class="number">0</span>;i--)</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;a[i];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
@@ -221,7 +218,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">遍历</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">大数保存</a>
         		</li>
       		
 		</ul>
@@ -277,7 +274,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/17/20190817-md/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/08/20191008/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -291,18 +288,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/18/20190818/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          二叉树非递归方法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/08/08/midNumber/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">midNumber</div>
+    <a href="/2019/09/13/20190913/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">无重复字符的最长子串</div>
       <i class="icon-circle-right"></i>
     </a>
   
